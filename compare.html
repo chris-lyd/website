@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why Lightyear Data vs. the Alternatives — Lightyear Data</title>
+<meta name="description" content="An honest comparison of your options for getting your data handled — enterprise BI, managed analytics firms, freelancers, built-in reporting — and when Lightyear Data is (and isn't) the right choice.">
+<link rel="canonical" href="https://lightyeardata.com/compare">
+<link rel="icon" type="image/png" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="An honest look at your alternatives — Lightyear Data">
+<meta property="og:description" content="Four realistic options for operator businesses shopping for data help — including when to pick someone else.">
+<meta property="og:url" content="https://lightyeardata.com/compare">
+<meta property="og:image" content="https://lightyeardata.com/assets/lyd-mark.png">
+<style>
+  :root{
+    --navy:#1F3A5F; --navy-700:#152a45; --ink:#0b0b0b; --muted:#52514e;
+    --line:#e6e8ec; --surface:#ffffff; --plane:#f6f8fb;
+    --blue:#2A78D6; --aqua:#1BAF7A; --amber:#EDA100;
+    --accent:#EDA100; --good:#0ca30c; --bad:#c0392b;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--surface);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .btn{display:inline-block;padding:13px 22px;border-radius:9px;font-weight:700;font-size:15px;cursor:pointer;transition:.15s;border:1.5px solid transparent;text-align:center}
+  .btn-accent{background:var(--accent);color:#3a2b00}
+  .btn-accent:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+  h1{font-size:44px;line-height:1.08;letter-spacing:-.02em;color:var(--navy);margin-bottom:16px;font-weight:800}
+  h2{font-size:30px;line-height:1.15;color:var(--navy);margin-bottom:10px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:17px;max-width:680px}
+  section{padding:62px 0}
+
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{font-weight:800;color:var(--navy);font-size:20px;letter-spacing:-.02em}
+  .logo span{color:var(--blue)}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:15px;font-weight:600;color:var(--muted)}
+  .nav-links a:hover{color:var(--navy)}
+  .nav-links .btn{padding:9px 16px;font-size:14px}
+  @media(max-width:860px){.nav-links a:not(.btn){display:none}}
+
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 100%);color:#fff;padding:62px 0}
+  .hero h1{color:#fff;margin-bottom:12px}
+  .hero .sub{color:#b9c6d8}
+  .breadcrumb{color:#9fb2c9;font-size:13px;margin-bottom:20px}
+  .breadcrumb a{color:#cdd8e6;text-decoration:underline}
+  .breadcrumb a:hover{color:#fff}
+
+  /* ARCHETYPE CARDS */
+  .arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
+  @media(max-width:860px){.arch-grid{grid-template-columns:1fr}}
+  .arch{border:1px solid var(--line);border-radius:14px;padding:28px;background:var(--surface);transition:.15s}
+  .arch:hover{border-color:var(--blue);box-shadow:0 12px 32px rgba(31,58,95,.08)}
+  .arch .tn{font-size:13px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin-bottom:8px}
+  .arch .band{font-size:22px;font-weight:800;color:var(--navy);margin-bottom:12px;letter-spacing:-.01em}
+  .arch p{font-size:14.5px;color:var(--muted);line-height:1.6}
+  .arch .fit{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);font-size:14px}
+  .arch .fit b{color:var(--navy)}
+
+  /* COMPARISON TABLE */
+  .cmp-section{background:var(--plane)}
+  .cmp-scroll{overflow-x:auto;margin-top:36px;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+  table{border-collapse:collapse;width:100%;min-width:760px;font-size:14.5px}
+  th,td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--line)}
+  th{background:var(--navy);color:#fff;font-size:13.5px;letter-spacing:.02em}
+  th:first-child,td:first-child{text-align:left;font-weight:600;color:var(--navy)}
+  th.us{background:var(--blue)}
+  td.us{background:#f0f6fd;font-weight:700}
+  tr:last-child td{border-bottom:none}
+  .yes{color:var(--good);font-weight:800}
+  .no{color:var(--bad);font-weight:700}
+  .part{color:var(--amber);font-weight:700}
+  .legend{margin-top:14px;font-size:13px;color:var(--muted)}
+
+  /* PEER CARDS */
+  .peer-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
+  @media(max-width:860px){.peer-grid{grid-template-columns:1fr}}
+  .peer{border:1px solid var(--line);border-radius:11px;padding:24px;background:var(--surface)}
+  .peer h4{font-size:16px;color:var(--navy);margin-bottom:8px;font-weight:700}
+  .peer p{color:var(--muted);font-size:14.5px;line-height:1.6}
+  .peer .pick{margin-top:12px;font-size:14px;color:var(--navy)}
+  .peer .pick b{color:var(--aqua)}
+
+  /* HONESTY STRIP */
+  .honest{background:var(--plane);border-radius:12px;padding:28px;margin-top:36px;border-left:3px solid var(--aqua)}
+  .honest h3{font-size:18px;color:var(--navy);margin-bottom:10px}
+  .honest p{color:var(--muted);font-size:15px;line-height:1.65}
+
+  .cta-final{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 100%);color:#fff;padding:62px 0;text-align:center}
+  .cta-final h2{color:#fff;margin-bottom:12px}
+  .cta-final p{color:#b9c6d8;font-size:18px;max-width:560px;margin:0 auto 26px}
+
+  footer{background:var(--navy-700);color:#9fb2c9;padding:34px 0;font-size:14px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .foot-in .logo{color:#fff}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="/" class="logo">Lightyear<span>Data</span></a>
+    <div class="nav-links">
+      <a href="/#what">How it works</a>
+      <a href="/#proof">Case Studies</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/compare" style="color:var(--navy)">Compare</a>
+      <a href="/about">About</a>
+      <a href="/audit" class="btn btn-accent">Free data audit</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">Home</a> / Compare</div>
+    <h1>An honest look at your alternatives</h1>
+    <p class="sub">If you're an operator business shopping for help with your data, you have four realistic options — and we're only the right one for some of you. Here's the whole landscape, including when to pick someone else.</p>
+  </div>
+</header>
+
+<!-- FOUR WAYS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The landscape</div>
+    <h2>Four ways to get your data handled</h2>
+    <p class="sub" style="margin-top:12px">Real market pricing, based on our own competitive research across 20+ firms.</p>
+
+    <div class="arch-grid">
+      <div class="arch">
+        <div class="tn">Enterprise BI consultancy</div>
+        <div class="band">$15K–$40K per dashboard · $12K–$25K+/mo</div>
+        <p>Deep benches, big-name clients, polished delivery. Built for companies with data teams to hand off to — and budgets to match.</p>
+        <p class="fit"><b>Pick this if:</b> you're $100M+ with an IT department. For a 30-person operator, you're paying for overhead you'll never use.</p>
+      </div>
+      <div class="arch">
+        <div class="tn">Managed analytics / "fractional data team"</div>
+        <div class="band">$3K–$12K/mo · often $50K–$150K/yr all-in</div>
+        <p>The closest thing to what we do — a growing field of firms offering an outsourced data team. Nearly all of them target funded tech, SaaS, and e-commerce companies, and most price per data source or per project, so costs creep as you grow.</p>
+        <p class="fit"><b>Pick this if:</b> you're a funded software company that speaks their language. If you run trucks, policies, patients, or pallets — they weren't built for you.</p>
+      </div>
+      <div class="arch">
+        <div class="tn">Freelancer / generalist consultant</div>
+        <div class="band">$1K–$7K per dashboard · $75–$150/hr</div>
+        <p>Cheap to start and sometimes great. But you get a deliverable, not a system: no version control, no maintenance, no automation, and when they move on, nobody can support what they built.</p>
+        <p class="fit"><b>Pick this if:</b> you need one report, once. Not if the numbers have to be right every Monday.</p>
+      </div>
+      <div class="arch">
+        <div class="tn">Your software's built-in reporting</div>
+        <div class="band">Included in what you already pay</div>
+        <p>Your POS, AMS, PMS, or ERP ships with dashboards. They're fine — for that one system. The operator problem is that your revenue lives in one tool, costs in another, and customers in a third, and built-in reporting can't join them.</p>
+        <p class="fit"><b>Pick this if:</b> one system truly runs your whole business. Most operators we meet have three or more that don't talk.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section class="cmp-section">
+  <div class="wrap">
+    <div class="eyebrow">Side by side</div>
+    <h2>Where each option lands</h2>
+
+    <div class="cmp-scroll">
+      <table>
+        <tr>
+          <th>What matters to an operator</th>
+          <th class="us">Lightyear Data</th>
+          <th>Managed analytics firms</th>
+          <th>Enterprise BI</th>
+          <th>Freelancers</th>
+          <th>Built-in reporting</th>
+        </tr>
+        <tr>
+          <td>Pricing published up front</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="part">Some</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Flat monthly fee that doesn't creep per source</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="no">✗ Usually per-source</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="no">✗ Hourly</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>You own the warehouse &amp; code, no lock-in</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="part">Sometimes</span></td>
+          <td><span class="part">Negotiable</span></td>
+          <td><span class="part">No system to own</span></td>
+          <td><span class="no">✗ Their platform</span></td>
+        </tr>
+        <tr>
+          <td>Joins data across all your systems</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="part">One-off</span></td>
+          <td><span class="no">✗</span></td>
+        </tr>
+        <tr>
+          <td>Automation of operations, not just dashboards</td>
+          <td class="us"><span class="yes">✓ First-class</span></td>
+          <td><span class="part">Add-on</span></td>
+          <td><span class="part">Enterprise scope</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="no">✗</span></td>
+        </tr>
+        <tr>
+          <td>Built for non-tech operator businesses</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="no">✗ SaaS/e-comm focus</span></td>
+          <td><span class="no">✗ Enterprise focus</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="yes">✓ Your vertical</span></td>
+        </tr>
+        <tr>
+          <td>AI-enabled delivery, with a human reviewing everything</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="part">Bolt-on AI</span></td>
+        </tr>
+        <tr>
+          <td>Priced for a $2M–$50M business</td>
+          <td class="us"><span class="yes">✓ $1.5K–$2.5K/mo</span></td>
+          <td><span class="part">Entry tiers only</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+        </tr>
+        <tr>
+          <td>Maintained &amp; supported month after month</td>
+          <td class="us"><span class="yes">✓</span></td>
+          <td><span class="yes">✓</span></td>
+          <td><span class="yes">✓ Retainer</span></td>
+          <td><span class="no">✗</span></td>
+          <td><span class="part">Vendor support</span></td>
+        </tr>
+      </table>
+    </div>
+    <p class="legend">Based on published pricing and positioning of 20+ firms reviewed in our competitive research, July 2026. Categories are generalizations — individual firms vary.</p>
+  </div>
+</section>
+
+<!-- NAMED PEERS -->
+<section>
+  <div class="wrap">
+    <div class="eyebrow">The specific firms</div>
+    <h2>How we stack up against the names you'll find</h2>
+    <p class="sub" style="margin-top:12px">If you search this space, these are the firms you'll run into. They're good at what they do — here's an honest read on when they're the better choice.</p>
+
+    <div class="peer-grid">
+      <div class="peer">
+        <h4>HelpWithMetrics</h4>
+        <p>Flat published tiers ($3K/$5K/$7K per month) and a disciplined, governed approach to metrics — genuinely well done. Focused on tech and SaaS companies; lighter on operational automation.</p>
+        <p class="pick"><b>Choose them if:</b> you're a SaaS company that lives in MRR and churn. <b>Choose us if:</b> you run operations — and want automation, not just reporting, at roughly half the monthly price.</p>
+      </div>
+      <div class="peer">
+        <h4>Datateer</h4>
+        <p>A strong managed-analytics platform that has recently focused entirely on the construction industry. Pricing runs per data source ($10K setup + ~$1.5K/mo per source), which scales up fast as you add systems.</p>
+        <p class="pick"><b>Choose them if:</b> you're a construction firm wanting a construction-specific platform. <b>Choose us if:</b> you're in any other operator vertical, or want a flat fee that doesn't grow per source.</p>
+      </div>
+      <div class="peer">
+        <h4>Mammoth Growth</h4>
+        <p>A large, capable growth-analytics consultancy oriented around marketing and product analytics for funded companies. Project-scoped engagements at consultancy rates.</p>
+        <p class="pick"><b>Choose them if:</b> you need growth/marketing analytics at scale. <b>Choose us if:</b> your questions are about operations, cash, and labor — not funnels.</p>
+      </div>
+      <div class="peer">
+        <h4>Full Send &amp; other fractional data teams</h4>
+        <p>A growing field of firms (Full Send, Adaptive, Blue Margin, LeapFrogBI, and more) renting you data-team hours. Most target mid-market and tech; most price custom; stack ownership varies by contract.</p>
+        <p class="pick"><b>Choose them if:</b> you want flexible senior data hours on tap. <b>Choose us if:</b> you want a fixed price, a system you own, and a firm that speaks operator — not startup.</p>
+      </div>
+    </div>
+
+    <div class="honest">
+      <h3>What we won't claim</h3>
+      <p>We're a small senior team, not a 50-person bench — you work directly with the people who build your system. We don't have a wall of Fortune 500 logos, and we won't invent one. We use AI heavily to deliver enterprise-grade work at operator prices, and a human reviews everything it touches before you ever see it. If your situation genuinely fits one of the firms above better, we'll say so on the audit call — it's a 20-minute conversation, not a sales trap.</p>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2>The fastest way to compare us: see your own data.</h2>
+    <p>We'll build a sample dashboard from what's publicly knowable about your business, walk you through it live, and you'll know in 20 minutes if this is worth doing.</p>
+    <a href="/audit" class="btn btn-accent" style="font-size:16px;padding:15px 30px">Get your free data audit →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="logo">Lightyear<span style="color:var(--accent)">Data</span></div>
+      <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
+    </div>
+    <div>© 2026 Lightyear Data · The outsourced data department for operators.</div>
+  </div>
+</footer>
+
+</body>
+</html>
