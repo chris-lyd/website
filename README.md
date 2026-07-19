@@ -17,7 +17,7 @@ Pages are linked with extensionless URLs (`/pricing`, `/audit`, …) which GitHu
 
 ## Before launch
 1. **Form backend** — `audit.html` has a `FORM_ENDPOINT` constant at the top of its script. Set it to a Formspree-style endpoint to receive submissions; until then, submissions only log to the console.
-2. **DNS** — point lightyeardata.com at GitHub Pages (A records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`; `www` CNAME to `consultusai.github.io`), then set the custom domain in repo Settings → Pages and enable Enforce HTTPS.
+2. **DNS** — point lightyeardata.com at GitHub Pages (A records `185.199.108.153`, `.109.153`, `.110.153`, `.111.153`; `www` CNAME to `<github-account>.github.io`, using the Lightyear Data GitHub account name), then set the custom domain in repo Settings → Pages and enable Enforce HTTPS.
 3. **Email** — chris@ / ryan@lightyeardata.com are referenced on the site and need mailboxes (or forwarding) set up.
 
 ## Content rules (from the project handoff)
