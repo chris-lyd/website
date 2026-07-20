@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Free Data Audit — Lightyear Data</title>
+<title>Free Data Audit — LightYear Data</title>
 <meta name="description" content="Get a free data audit: tell us your industry and the systems you run on, and we'll build a sample dashboard and walk you through it live in 20 minutes. No cost, no obligation.">
 <link rel="canonical" href="https://lightyeardata.com/audit">
 <link rel="icon" type="image/png" href="/assets/favicon-32.png">
 <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Free Data Audit — Lightyear Data">
+<meta property="og:title" content="Free Data Audit — LightYear Data">
 <meta property="og:description" content="See your business on a dashboard — before you pay a cent. A 20-minute walkthrough, no obligation.">
 <meta property="og:url" content="https://lightyeardata.com/audit">
 <meta property="og:image" content="https://lightyeardata.com/assets/lyd-mark.png">
@@ -40,8 +40,8 @@
   /* NAV */
   nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
   .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
-  .logo{font-weight:800;color:var(--navy);font-size:20px;letter-spacing:-.02em}
-  .logo span{color:var(--blue)}
+  .logo{display:flex;align-items:center;height:40px}
+  .logo img{height:100%;width:auto;max-width:180px}
   .nav-links{display:flex;gap:26px;align-items:center;font-size:15px;font-weight:600;color:var(--muted)}
   .nav-links a:hover{color:var(--navy)}
   .nav-links .btn{padding:9px 16px;font-size:14px}
@@ -121,19 +121,171 @@
   .form-success h3{font-size:24px;color:var(--navy);margin-bottom:12px;font-weight:700}
   .form-success p{color:var(--muted);font-size:16px;margin-bottom:24px}
   .form-success .checkmark{font-size:48px;color:var(--aqua);margin-bottom:16px}
+
+/* === LYD refinement layer === */
+/* ============================================================
+   LIGHTYEAR DATA — DESIGN SYSTEM REFINEMENT LAYER v1
+   Injected last so it refines the base styles via cascade order.
+   Brand colors unchanged; depth comes only from navy-tinted
+   shadow / gradient / opacity layers of the existing palette.
+   ============================================================ */
+:root{
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+  /* navy-tinted elevation scale */
+  --sh-1:0 1px 2px rgba(31,58,95,.05), 0 1px 1px rgba(31,58,95,.04);
+  --sh-2:0 4px 12px rgba(31,58,95,.07);
+  --sh-3:0 14px 34px rgba(31,58,95,.12);
+  --sh-4:0 26px 60px rgba(31,58,95,.18);
+  --ring:0 0 0 3px rgba(42,120,214,.14);
+  --r-card:14px; --r-tile:8px; --r-btn:9px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ---- Tabular-mono numerals: the "data-native" feel ---- */
+.kpi .val,.dkpi .val,.dash-title,.hstat b,.chg,.dkpi .chg,.kpi .chg,
+.price .setup,.arch .band,.dchart svg text,.dash svg text,
+.hero-stats .hstat b{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1,"cv01" 1;
+}
+.kpi .val,.dkpi .val{font-family:var(--mono);letter-spacing:-.02em}
+.hstat b{font-family:var(--mono);letter-spacing:-.01em}
+.price .setup{font-family:var(--mono)}
+
+/* ---- Display typography: tighter, more deliberate ---- */
+h1{letter-spacing:-.035em!important}
+h2,h2.sec{letter-spacing:-.025em!important}
+.eyebrow,.dim-tag,.vhead,.answers,.tn,.arch .tn{
+  font-weight:800;
+}
+.eyebrow{color:#2f6bb0}
+
+/* ---- Unified card system: one radius, one elevation, one motion ---- */
+.dboard,.price,.bio,.arch,.peer,.rcard,.vcard,.hcard,.vcase,
+.faq-item,.benefit-card,.form-box,.upgrade-box,.audit-steps,
+.mission-box,.reassurance,.honest,.trust-line{
+  border-radius:var(--r-card);
+  box-shadow:var(--sh-1);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.dboard:hover,.bio:hover,.arch:hover,.peer:hover,.vcard:hover,
+.benefit-card:hover,.faq-item:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--sh-3);
+  border-color:#cfd9e6;
+}
+.price:hover{transform:translateY(-4px);box-shadow:var(--sh-3)}
+.price.feat{box-shadow:var(--sh-3)}
+.price.feat:hover{box-shadow:var(--sh-4)}
+
+/* ---- Inner tiles + delta chips ---- */
+.kpi,.dkpi,.dchart{border-radius:var(--r-tile)}
+.dkpi{position:relative;overflow:hidden}
+.kpi{transition:background .3s var(--ease)}
+/* delta indicators become tinted pill chips */
+.chg{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:1px 7px;border-radius:999px;line-height:1.5;
+  width:fit-content;
+}
+.chg.up,.dkpi .chg.up,.kpi .chg.up{background:rgba(27,175,122,.14);color:#076046}
+.chg.down,.dkpi .chg.down,.kpi .chg.down{background:rgba(192,57,43,.11);color:#98261c}
+.chg.flat,.dkpi .chg.flat,.kpi .chg.flat{background:rgba(82,81,78,.10);color:#4a4946}
+
+/* ---- Charts: soft shadows, receding gridlines, smoother strokes ---- */
+.dchart svg rect,.dash svg rect{
+  filter:drop-shadow(0 2px 3px rgba(31,58,95,.14));
+}
+.dchart svg polyline,.dash svg polyline{
+  filter:drop-shadow(0 3px 5px rgba(42,120,214,.20));
+  stroke-width:2.75;
+}
+/* gridlines / axes recede so data reads first */
+.dchart svg line,.dash svg line{stroke:#eef1f5!important}
+.dchart svg circle[fill="none"]{stroke:#eef1f5!important}
+
+/* ---- Buttons: crisper, tactile ---- */
+.btn{border-radius:var(--r-btn);transition:transform .18s var(--ease),box-shadow .18s var(--ease),filter .18s var(--ease),background .18s var(--ease)}
+.btn-accent{box-shadow:0 6px 16px rgba(237,161,0,.24)}
+.btn-accent:hover{box-shadow:0 10px 22px rgba(237,161,0,.30)}
+.btn:active{transform:translateY(1px) scale(.99)}
+a.btn:focus-visible,button.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* ---- Nav: animated underline on links ---- */
+.nav-links a:not(.btn){position:relative}
+.nav-links a:not(.btn)::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;
+  background:var(--amber,#EDA100);border-radius:2px;
+  transition:right .3s var(--ease);
+}
+.nav-links a:not(.btn):hover::after{right:0}
+
+/* ---- Live badge: gentle pulse ---- */
+.dash-live::before{animation:lyd-pulse 2s var(--ease) infinite}
+@keyframes lyd-pulse{
+  0%{box-shadow:0 0 0 0 rgba(12,163,12,.45)}
+  70%{box-shadow:0 0 0 6px rgba(12,163,12,0)}
+  100%{box-shadow:0 0 0 0 rgba(12,163,12,0)}
+}
+
+/* ---- Depth in navy sections: subtle instrument grid + glow ---- */
+.hero,.final,.cta-final,.cta-final,.dash-top{position:relative}
+.hero::before,.final::before,.cta-final::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),
+    radial-gradient(1200px 400px at 78% -10%,rgba(42,120,214,.28),transparent 60%);
+  background-size:34px 34px,34px 34px,100% 100%;
+  mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.35));
+}
+.hero>*,.final>*,.cta-final>*{position:relative;z-index:1}
+
+/* premium showcase dashboard shadow (hero) */
+.dash{box-shadow:0 30px 70px rgba(8,17,33,.42),0 4px 14px rgba(8,17,33,.28)!important}
+
+/* ---- Section separation: hairline between plane and surface ---- */
+.reality,.byvertical,.fdash,.deliver,.honesty,.vertproof,.bios,
+.benefits-section,.faq-quick,.faq-section,.cmp-section{
+  border-top:1px solid var(--line,#e6e8ec);
+}
+
+/* ---- Form polish ---- */
+.form-group input,.form-group select,.form-group textarea{border-radius:var(--r-tile);transition:border-color .18s var(--ease),box-shadow .18s var(--ease)}
+.step-num{box-shadow:0 6px 14px rgba(42,120,214,.28)}
+
+/* ---- Comparison table: softer, more premium ---- */
+.cmp-scroll{border-radius:var(--r-card);box-shadow:var(--sh-2)}
+td.us{background:linear-gradient(180deg,#f2f8fe,#eaf3fd)}
+
+/* ---- Pricing feature tile accent ---- */
+.price .badge{box-shadow:0 6px 14px rgba(237,161,0,.28)}
+
+/* ---- Accessibility: focus states everywhere ---- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid #2A78D6;outline-offset:2px;
+}
+
+/* ---- Reduced motion: collapse all motion to static ---- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .dboard:hover,.bio:hover,.arch:hover,.peer:hover,.vcard:hover,
+  .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
+}
 </style>
 </head>
 <body>
 
 <nav>
   <div class="wrap nav-in">
-    <a href="/" class="logo">Lightyear<span>Data</span></a>
+    <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
     <div class="nav-links">
       <a href="/#what">How it works</a>
+      <a href="/dashboards">Dashboards</a>
       <a href="/#proof">Case Studies</a>
       <a href="/pricing">Pricing</a>
       <a href="/compare">Compare</a>
-      <a href="/about">About</a>
+      <a href="/about">About Us</a>
       <a href="/audit" style="color:var(--navy);font-weight:700">Free data audit</a>
     </div>
   </div>
@@ -144,7 +296,7 @@
   <div class="wrap">
     <div class="eyebrow" style="color:var(--accent)">No cost. No obligation. Real numbers.</div>
     <h1>See your business on a dashboard — before you pay a cent.</h1>
-    <p class="sub">Tell us your industry and the systems you run on. We'll build a sample dashboard using your real numbers and walk you through exactly what daily-refreshed operational dashboards would look like for your business.</p>
+    <p class="sub">Tell us your industry and the systems you run on. We'll build a sample dashboard using your real numbers where they're public (estimates where they're not) and walk you through exactly what daily-refreshed operational dashboards would look like for your business.</p>
   </div>
 </header>
 
@@ -192,7 +344,7 @@
             <textarea id="pain-point" name="pain-point" placeholder="E.g., weekly revenue reconciliation across 5 locations..."></textarea>
           </div>
 
-          <button type="submit" class="btn btn-accent form-btn">Get my free data audit →</button>
+          <button type="submit" class="btn btn-accent form-btn">Get your free data audit →</button>
         </form>
 
         <!-- SUCCESS MESSAGE (HIDDEN) -->
@@ -207,7 +359,7 @@
         <div class="reassurance">
           <p><b>No obligation.</b> You keep the dashboard mockup either way.</p>
           <p><b>No lock-in ever.</b> If you move forward, the warehouse and code are built in your name from day one.</p>
-          <p><b>A human reviews everything.</b> We build dashboards carefully — every change is reviewed before you see it.</p>
+          <p><b>Fixed, transparent pricing.</b> No hourly clock and no surprise invoices — you'll know the exact cost before you commit.</p>
         </div>
       </div>
     </div>
@@ -224,7 +376,7 @@
         <div class="step">
           <div class="step-num">2</div>
           <h4>We build a sample dashboard</h4>
-          <p>Using your real numbers where we can find them publicly, or estimates where we can't, we mock up what your operational dashboard could look like — the same kind we've built for property managers, insurance brokers, and CPG brands.</p>
+          <p>Using your real numbers where we can find them publicly, or estimates where we can't, we mock up what your operational dashboard could look like. It's the same kind we've built for a multi-channel CPG brand.</p>
         </div>
 
         <div class="step">
@@ -319,10 +471,10 @@
 <footer>
   <div class="wrap foot-in">
     <div>
-      <div class="logo">Lightyear<span style="color:var(--accent)">Data</span></div>
+      <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
       <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
     </div>
-    <div>© 2026 Lightyear Data · The outsourced data department for operators.</div>
+    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
   </div>
 </footer>
 
@@ -362,7 +514,7 @@
       document.getElementById('successMessage').classList.add('show');
     } catch (err) {
       btn.disabled = false;
-      btn.textContent = 'Get my free data audit →';
+      btn.textContent = 'Get your free data audit →';
       alert("Something went wrong sending the form. Please email chris@lightyeardata.com and we'll take it from there.");
     }
   });
