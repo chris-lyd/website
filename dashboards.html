@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CPG Dashboard Suite — LightYear Data</title>
+<meta name="description" content="13 dashboards across 4 strategic dimensions, built for CPG & Food/Beverage brands — brand financial health, cash operations, field performance, and resource productivity, all daily-refreshed and unified.">
+<link rel="canonical" href="https://lightyeardata.com/dashboards">
+<link rel="icon" type="image/png" href="/assets/favicon-32.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CPG Dashboard Suite — LightYear Data">
+<meta property="og:description" content="13 dashboards, 4 dimensions, one daily-refreshed system built for CPG & Food/Beverage brands.">
+<meta property="og:url" content="https://lightyeardata.com/dashboards">
+<meta property="og:image" content="https://lightyeardata.com/assets/lyd-mark.png">
+<style>
+  :root{
+    --navy:#1F3A5F; --navy-700:#152a45; --ink:#0b0b0b; --muted:#52514e;
+    --line:#e6e8ec; --surface:#ffffff; --plane:#f6f8fb;
+    --blue:#2A78D6; --aqua:#1BAF7A; --amber:#EDA100; --violet:#4a3aa7;
+    --accent:#EDA100; --good:#0ca30c; --bad:#c0392b;
+    --grid:#e1e0d9;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);background:var(--surface);line-height:1.55;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 28px}
+  a{color:inherit;text-decoration:none}
+  .btn{display:inline-block;padding:13px 22px;border-radius:9px;font-weight:700;font-size:15px;cursor:pointer;transition:.15s;border:1.5px solid transparent;text-align:center}
+  .btn-accent{background:var(--accent);color:#3a2b00}
+  .btn-accent:hover{filter:brightness(1.05);transform:translateY(-1px)}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:var(--blue)}
+  h1{font-size:44px;line-height:1.08;letter-spacing:-.02em;color:var(--navy);margin-bottom:16px;font-weight:800}
+  h2{font-size:28px;line-height:1.15;color:var(--navy);margin-bottom:8px;letter-spacing:-.01em}
+  .sub{color:var(--muted);font-size:16.5px;max-width:640px}
+  section{padding:54px 0}
+
+  /* NAV */
+  nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;height:40px}
+  .logo img{height:100%;width:auto;max-width:180px}
+  .nav-links{display:flex;gap:26px;align-items:center;font-size:15px;font-weight:600;color:var(--muted)}
+  .nav-links a:hover{color:var(--navy)}
+  .nav-links .btn{padding:9px 16px;font-size:14px}
+  @media(max-width:900px){.nav-links a:not(.btn){display:none}}
+
+  /* HERO */
+  .hero{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 100%);color:#fff;padding:58px 0}
+  .hero h1{color:#fff;margin-bottom:12px}
+  .hero .sub{color:#b9c6d8}
+  .breadcrumb{color:#9fb2c9;font-size:13px;margin-bottom:20px}
+  .breadcrumb a{color:#cdd8e6;text-decoration:underline}
+  .breadcrumb a:hover{color:#fff}
+  .hero-stats{display:flex;gap:28px;flex-wrap:wrap;margin-top:26px}
+  .hstat{font-size:13.5px;color:#9fb2c9}
+  .hstat b{display:block;font-size:22px;color:#fff;font-weight:800}
+
+  /* DIMENSION SECTIONS */
+  .dim:nth-child(even){background:var(--plane)}
+  .dim-head{margin-bottom:30px}
+  .dim-tag{font-size:13px;font-weight:800;color:var(--amber);letter-spacing:.03em}
+  .dim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:26px}
+  @media(max-width:980px){.dim-grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:680px){.dim-grid{grid-template-columns:1fr}}
+
+  /* DASHBOARD CARD */
+  .dboard{background:var(--surface);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:.15s}
+  .dboard:hover{border-color:var(--blue);box-shadow:0 12px 32px rgba(31,58,95,.08)}
+  .dboard-top{display:flex;align-items:center;gap:9px;padding:14px 16px;border-bottom:1px solid var(--line);background:var(--plane)}
+  .dboard-top .ic{font-size:17px}
+  .dboard-top h4{font-size:14.5px;color:var(--navy);font-weight:700;line-height:1.25}
+  .dboard-body{padding:16px}
+  .answers{font-size:11.5px;font-weight:700;color:var(--blue);text-transform:uppercase;letter-spacing:.03em;margin-bottom:12px}
+  .dkpis{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px}
+  .dkpi{background:var(--plane);border:1px solid var(--line);border-radius:8px;padding:8px 10px}
+  .dkpi .lab{font-size:9.5px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+  .dkpi .val{font-size:17px;font-weight:800;color:var(--navy);line-height:1.15;margin-top:2px}
+  .dkpi .chg{font-size:10.5px;font-weight:700;margin-top:1px}
+  .up{color:var(--good)} .down{color:var(--bad)} .flat{color:var(--muted)}
+  .dchart{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px 4px}
+
+  /* CTA */
+  .cta-final{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 100%);color:#fff;padding:58px 0;text-align:center}
+  .cta-final h2{color:#fff;margin-bottom:12px}
+  .cta-final p{color:#b9c6d8;font-size:17px;max-width:560px;margin:0 auto 24px}
+
+  footer{background:var(--navy-700);color:#9fb2c9;padding:34px 0;font-size:14px}
+  .foot-in{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px}
+  .foot-in .logo{color:#fff}
+
+/* === LYD refinement layer === */
+.dchart svg polygon,.dash svg polygon{fill-opacity:.15}
+/* ============================================================
+   LIGHTYEAR DATA — DESIGN SYSTEM REFINEMENT LAYER v1
+   Injected last so it refines the base styles via cascade order.
+   Brand colors unchanged; depth comes only from navy-tinted
+   shadow / gradient / opacity layers of the existing palette.
+   ============================================================ */
+:root{
+  --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Menlo,Consolas,monospace;
+  /* navy-tinted elevation scale */
+  --sh-1:0 1px 2px rgba(31,58,95,.05), 0 1px 1px rgba(31,58,95,.04);
+  --sh-2:0 4px 12px rgba(31,58,95,.07);
+  --sh-3:0 14px 34px rgba(31,58,95,.12);
+  --sh-4:0 26px 60px rgba(31,58,95,.18);
+  --ring:0 0 0 3px rgba(42,120,214,.14);
+  --r-card:14px; --r-tile:8px; --r-btn:9px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ---- Tabular-mono numerals: the "data-native" feel ---- */
+.kpi .val,.dkpi .val,.dash-title,.hstat b,.chg,.dkpi .chg,.kpi .chg,
+.price .setup,.arch .band,.dchart svg text,.dash svg text,
+.hero-stats .hstat b{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1,"cv01" 1;
+}
+.kpi .val,.dkpi .val{font-family:var(--mono);letter-spacing:-.02em}
+.hstat b{font-family:var(--mono);letter-spacing:-.01em}
+.price .setup{font-family:var(--mono)}
+
+/* ---- Display typography: tighter, more deliberate ---- */
+h1{letter-spacing:-.035em!important}
+h2,h2.sec{letter-spacing:-.025em!important}
+.eyebrow,.dim-tag,.vhead,.answers,.tn,.arch .tn{
+  font-weight:800;
+}
+.eyebrow{color:#2f6bb0}
+
+/* ---- Unified card system: one radius, one elevation, one motion ---- */
+.dboard,.price,.bio,.arch,.peer,.rcard,.vcard,.hcard,.vcase,
+.faq-item,.benefit-card,.form-box,.upgrade-box,.audit-steps,
+.mission-box,.reassurance,.honest,.trust-line{
+  border-radius:var(--r-card);
+  box-shadow:var(--sh-1);
+  transition:transform .35s var(--ease),box-shadow .35s var(--ease),border-color .35s var(--ease);
+}
+.dboard:hover,.bio:hover,.arch:hover,.peer:hover,.vcard:hover,
+.benefit-card:hover,.faq-item:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--sh-3);
+  border-color:#cfd9e6;
+}
+.price:hover{transform:translateY(-4px);box-shadow:var(--sh-3)}
+.price.feat{box-shadow:var(--sh-3)}
+.price.feat:hover{box-shadow:var(--sh-4)}
+
+/* ---- Inner tiles + delta chips ---- */
+.kpi,.dkpi,.dchart{border-radius:var(--r-tile)}
+.dkpi{position:relative;overflow:hidden}
+.kpi{transition:background .3s var(--ease)}
+/* delta indicators become tinted pill chips */
+.chg{
+  display:inline-flex;align-items:center;gap:3px;
+  padding:1px 7px;border-radius:999px;line-height:1.5;
+  width:fit-content;
+}
+.chg.up,.dkpi .chg.up,.kpi .chg.up{background:rgba(27,175,122,.14);color:#076046}
+.chg.down,.dkpi .chg.down,.kpi .chg.down{background:rgba(192,57,43,.11);color:#98261c}
+.chg.flat,.dkpi .chg.flat,.kpi .chg.flat{background:rgba(82,81,78,.10);color:#4a4946}
+
+/* ---- Charts: soft shadows, receding gridlines, smoother strokes ---- */
+.dchart svg rect,.dash svg rect{
+  filter:drop-shadow(0 2px 3px rgba(31,58,95,.14));
+}
+.dchart svg polyline,.dash svg polyline{
+  filter:drop-shadow(0 3px 5px rgba(42,120,214,.20));
+  stroke-width:2.75;
+}
+/* gridlines / axes recede so data reads first */
+.dchart svg line,.dash svg line{stroke:#eef1f5!important}
+.dchart svg circle[fill="none"]{stroke:#eef1f5!important}
+
+/* ---- Buttons: crisper, tactile ---- */
+.btn{border-radius:var(--r-btn);transition:transform .18s var(--ease),box-shadow .18s var(--ease),filter .18s var(--ease),background .18s var(--ease)}
+.btn-accent{box-shadow:0 6px 16px rgba(237,161,0,.24)}
+.btn-accent:hover{box-shadow:0 10px 22px rgba(237,161,0,.30)}
+.btn:active{transform:translateY(1px) scale(.99)}
+a.btn:focus-visible,button.btn:focus-visible{outline:none;box-shadow:var(--ring)}
+
+/* ---- Nav: animated underline on links ---- */
+.nav-links a:not(.btn){position:relative}
+.nav-links a:not(.btn)::after{
+  content:"";position:absolute;left:0;right:100%;bottom:-6px;height:2px;
+  background:var(--amber,#EDA100);border-radius:2px;
+  transition:right .3s var(--ease);
+}
+.nav-links a:not(.btn):hover::after{right:0}
+
+/* ---- Live badge: gentle pulse ---- */
+.dash-live::before{animation:lyd-pulse 2s var(--ease) infinite}
+@keyframes lyd-pulse{
+  0%{box-shadow:0 0 0 0 rgba(12,163,12,.45)}
+  70%{box-shadow:0 0 0 6px rgba(12,163,12,0)}
+  100%{box-shadow:0 0 0 0 rgba(12,163,12,0)}
+}
+
+/* ---- Depth in navy sections: subtle instrument grid + glow ---- */
+.hero,.final,.cta-final,.cta-final,.dash-top{position:relative}
+.hero::before,.final::before,.cta-final::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.028) 1px,transparent 1px),
+    radial-gradient(1200px 400px at 78% -10%,rgba(42,120,214,.28),transparent 60%);
+  background-size:34px 34px,34px 34px,100% 100%;
+  mask-image:linear-gradient(180deg,#000,rgba(0,0,0,.35));
+}
+.hero>*,.final>*,.cta-final>*{position:relative;z-index:1}
+
+/* premium showcase dashboard shadow (hero) */
+.dash{box-shadow:0 30px 70px rgba(8,17,33,.42),0 4px 14px rgba(8,17,33,.28)!important}
+
+/* ---- Section separation: hairline between plane and surface ---- */
+.reality,.byvertical,.fdash,.deliver,.honesty,.vertproof,.bios,
+.benefits-section,.faq-quick,.faq-section,.cmp-section{
+  border-top:1px solid var(--line,#e6e8ec);
+}
+
+/* ---- Form polish ---- */
+.form-group input,.form-group select,.form-group textarea{border-radius:var(--r-tile);transition:border-color .18s var(--ease),box-shadow .18s var(--ease)}
+.step-num{box-shadow:0 6px 14px rgba(42,120,214,.28)}
+
+/* ---- Comparison table: softer, more premium ---- */
+.cmp-scroll{border-radius:var(--r-card);box-shadow:var(--sh-2)}
+td.us{background:linear-gradient(180deg,#f2f8fe,#eaf3fd)}
+
+/* ---- Pricing feature tile accent ---- */
+.price .badge{box-shadow:0 6px 14px rgba(237,161,0,.28)}
+
+/* ---- Accessibility: focus states everywhere ---- */
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{
+  outline:2px solid #2A78D6;outline-offset:2px;
+}
+
+/* ---- Reduced motion: collapse all motion to static ---- */
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .dboard:hover,.bio:hover,.arch:hover,.peer:hover,.vcard:hover,
+  .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
+    <div class="nav-links">
+      <a href="/#what">How it works</a>
+      <a href="/dashboards" style="color:var(--navy)">Dashboards</a>
+      <a href="/#proof">Case Studies</a>
+      <a href="/pricing">Pricing</a>
+      <a href="/compare">Compare</a>
+      <a href="/about">About Us</a>
+      <a href="/audit" class="btn btn-accent">Free data audit</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="wrap">
+    <div class="breadcrumb"><a href="/">Home</a> / Dashboards</div>
+    <div class="eyebrow" style="color:var(--accent)">Built for CPG &amp; Food/Beverage brands</div>
+    <h1>One system. 13 dashboards. Every question answered.</h1>
+    <p class="sub">This is a sample CPG build: retail, Amazon, and DTC unified into one daily-refreshed system across four dimensions (strategic health, cash operations, field performance, and resource productivity). The same four-dimension system maps to your vertical.</p>
+    <div class="hero-stats">
+      <div class="hstat"><b>$18.4M</b>TTM revenue</div>
+      <div class="hstat"><b>3</b>channels unified</div>
+      <div class="hstat"><b>13</b>dashboards, one price</div>
+      <div class="hstat"><b>Daily</b>refresh</div>
+    </div>
+  </div>
+</header>
+
+<!-- DIMENSION I -->
+<section class="dim">
+  <div class="wrap">
+    <div class="dim-head">
+      <div class="dim-tag">DIMENSION I — STRATEGIC HEALTH</div>
+      <h2>The "Sleep Better" view</h2>
+      <p class="sub">Answers: Are we safe?</p>
+    </div>
+    <div class="dim-grid">
+
+      <!-- 1. Brand Financial Health -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">📈</span><h4>Brand Financial Health</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Are we actually profitable?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Gross Margin</div><div class="val">58%</div><div class="chg up">▲ 1.4pt</div></div>
+            <div class="dkpi"><div class="lab">Contribution Mgn</div><div class="val">34%</div><div class="chg flat">— flat</div></div>
+            <div class="dkpi"><div class="lab">TTM Revenue</div><div class="val">$18.4M</div><div class="chg up">▲ 11%</div></div>
+            <div class="dkpi"><div class="lab">Blended ROI</div><div class="val">3.8x</div><div class="chg up">▲ 0.3x</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="42" y="14" width="34" height="48" rx="3" fill="#2A78D6"/>
+              <rect x="102" y="30" width="34" height="32" rx="3" fill="#1BAF7A"/>
+              <rect x="162" y="42" width="34" height="20" rx="3" fill="#EDA100"/>
+              <g font-size="8.5" fill="#52514e" text-anchor="middle">
+                <text x="59" y="72">Gross 58%</text><text x="119" y="72">Contrib. 34%</text><text x="179" y="72">Net 12%</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Cash Runway Forecast -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🔮</span><h4>Cash Runway Forecast</h4></div>
+        <div class="dboard-body">
+          <div class="answers">How long until we're tight?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Cash on Hand</div><div class="val">$3.2M</div><div class="chg down">▼ $230K/mo</div></div>
+            <div class="dkpi"><div class="lab">Runway</div><div class="val">14 mo</div><div class="chg flat">at current burn</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="20" y1="6" x2="20" y2="62" stroke="#e1e0d9"/>
+              <line x1="20" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <polyline fill="none" stroke="#2A78D6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="26,20 60,26 94,30 128,36 162,42 196,47 230,52"/>
+              <polygon fill="#2A78D6" fill-opacity="0.08" points="26,20 60,26 94,30 128,36 162,42 196,47 230,52 230,62 26,62"/>
+              <circle cx="230" cy="52" r="3.5" fill="#2A78D6"/>
+              <g font-size="7.5" fill="#898781" text-anchor="middle">
+                <text x="26" y="72">Now</text><text x="128" y="72">+3mo</text><text x="230" y="72">+6mo</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Inventory-to-Cash Cycle -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🔄</span><h4>Inventory-to-Cash Cycle</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Where is money getting stuck?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Cash Conv. Cycle</div><div class="val">55 days</div><div class="chg down">▼ 4 days</div></div>
+            <div class="dkpi"><div class="lab">DIO / DSO / DPO</div><div class="val">62/38/45</div><div class="chg flat">days</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <g font-size="9" fill="#52514e"><text x="4" y="16">DIO</text></g>
+              <rect x="46" y="8" width="124" height="14" rx="3" fill="#2A78D6"/>
+              <text x="176" y="19" font-size="9" fill="#2A78D6" font-weight="700">62d</text>
+              <g font-size="9" fill="#52514e"><text x="4" y="38">DSO</text></g>
+              <rect x="46" y="30" width="76" height="14" rx="3" fill="#1BAF7A"/>
+              <text x="128" y="41" font-size="9" fill="#1BAF7A" font-weight="700">38d</text>
+              <g font-size="9" fill="#52514e"><text x="4" y="60">DPO</text></g>
+              <rect x="46" y="52" width="90" height="14" rx="3" fill="#EDA100"/>
+              <text x="142" y="63" font-size="9" fill="#EDA100" font-weight="700">45d</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSION II -->
+<section class="dim">
+  <div class="wrap">
+    <div class="dim-head">
+      <div class="dim-tag">DIMENSION II — CASH OPERATIONS</div>
+      <h2>The "No Surprises" view</h2>
+      <p class="sub">Answers: Where is our cash stuck?</p>
+    </div>
+    <div class="dim-grid">
+
+      <!-- 4. AR & AP Health -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🧾</span><h4>Retailer &amp; Distributor AR/AP Health</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Who owes us, and who's overdue?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Total AR</div><div class="val">$1.9M</div><div class="chg flat">outstanding</div></div>
+            <div class="dkpi"><div class="lab">90+ Days</div><div class="val">7%</div><div class="chg down">▼ 2pt</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="34" y="18" width="30" height="44" rx="3" fill="#1BAF7A"/>
+              <rect x="76" y="42" width="30" height="20" rx="3" fill="#2A78D6"/>
+              <rect x="118" y="48" width="30" height="14" rx="3" fill="#EDA100"/>
+              <rect x="160" y="52" width="30" height="10" rx="3" fill="#c0392b"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="49" y="72">0-30</text><text x="91" y="72">31-60</text><text x="133" y="72">61-90</text><text x="175" y="72">90+</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Trade Spend & Deduction Reconciliation -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🏗️</span><h4>Trade Spend &amp; Deduction Reconciliation</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Is trade spend eating our margin?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Trade Spend YTD</div><div class="val">$1.79M</div><div class="chg down">▲ 8.5% over</div></div>
+            <div class="dkpi"><div class="lab">Unauthorized Ded.</div><div class="val">$184K</div><div class="chg up">$61K recovered</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="50" y="18" width="34" height="44" rx="3" fill="#c3c2b7"/>
+              <rect x="110" y="10" width="34" height="52" rx="3" fill="#EDA100"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="67" y="72">Budget</text><text x="127" y="72">Actual</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. SKU/Channel-Level Profitability -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">💰</span><h4>SKU / Channel-Level Profitability</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Which SKUs are cash cows vs. traps?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Top SKU Margin</div><div class="val">61%</div><div class="chg flat">Original 12oz</div></div>
+            <div class="dkpi"><div class="lab">Weakest SKU</div><div class="val">22%</div><div class="chg down">Value 3-Pack</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="34" y="12" width="26" height="50" rx="3" fill="#1BAF7A"/>
+              <rect x="70" y="24" width="26" height="38" rx="3" fill="#2A78D6"/>
+              <rect x="106" y="34" width="26" height="28" rx="3" fill="#2A78D6"/>
+              <rect x="142" y="44" width="26" height="18" rx="3" fill="#EDA100"/>
+              <rect x="178" y="50" width="26" height="12" rx="3" fill="#c0392b"/>
+              <g font-size="7.5" fill="#898781" text-anchor="middle">
+                <text x="47" y="72">SKU-1</text><text x="83" y="72">SKU-2</text><text x="119" y="72">SKU-3</text><text x="155" y="72">SKU-4</text><text x="191" y="72">SKU-5</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSION III -->
+<section class="dim">
+  <div class="wrap">
+    <div class="dim-head">
+      <div class="dim-tag">DIMENSION III — FIELD PERFORMANCE</div>
+      <h2>The "Bad News First" view</h2>
+      <p class="sub">Answers: Which channel is about to blow up?</p>
+    </div>
+    <div class="dim-grid">
+
+      <!-- 7. Channel/Retailer Margin Performance -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🔬</span><h4>Channel / Retailer Margin Performance</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Which relationship is losing us margin?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Retailer A</div><div class="val">49%</div><div class="chg down">▼ 3pt QoQ</div></div>
+            <div class="dkpi"><div class="lab">Amazon Margin</div><div class="val">44%</div><div class="chg down">fees ~15% of rev</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="40" y="26" width="34" height="36" rx="3" fill="#c0392b"/>
+              <rect x="100" y="16" width="34" height="46" rx="3" fill="#1BAF7A"/>
+              <rect x="160" y="30" width="34" height="32" rx="3" fill="#2A78D6"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="57" y="72">Retailer A</text><text x="117" y="72">Retailer B</text><text x="177" y="72">Amazon</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. Trade & Marketing Spend Budget vs Actuals -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🎯</span><h4>Trade &amp; Marketing Spend: Budget vs. Actuals</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Are we overspending on growth?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Marketing YTD</div><div class="val">$1.98M</div><div class="chg down">▲ 7.6% over</div></div>
+            <div class="dkpi"><div class="lab">Budget YTD</div><div class="val">$1.84M</div><div class="chg flat">planned</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="50" y="16" width="34" height="46" rx="3" fill="#c3c2b7"/>
+              <rect x="110" y="10" width="34" height="52" rx="3" fill="#c0392b"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="67" y="72">Budget</text><text x="127" y="72">Actual</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9. Broker/Distributor Scorecard -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">📋</span><h4>Broker / Distributor Scorecard</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Which partner needs a conversation?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Top Broker</div><div class="val">94</div><div class="chg up">Broker A</div></div>
+            <div class="dkpi"><div class="lab">Flagged</div><div class="val">61</div><div class="chg down">Broker C</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <g font-size="9" fill="#52514e"><text x="4" y="16">Broker A</text></g>
+              <rect x="72" y="8" width="141" height="14" rx="3" fill="#1BAF7A"/>
+              <text x="218" y="19" font-size="9" fill="#1BAF7A" font-weight="700">94</text>
+              <g font-size="9" fill="#52514e"><text x="4" y="38">Broker B</text></g>
+              <rect x="72" y="30" width="117" height="14" rx="3" fill="#2A78D6"/>
+              <text x="194" y="41" font-size="9" fill="#2A78D6" font-weight="700">78</text>
+              <g font-size="9" fill="#52514e"><text x="4" y="60">Broker C</text></g>
+              <rect x="72" y="52" width="91" height="14" rx="3" fill="#c0392b"/>
+              <text x="168" y="63" font-size="9" fill="#c0392b" font-weight="700">61</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- DIMENSION IV -->
+<section class="dim">
+  <div class="wrap">
+    <div class="dim-head">
+      <div class="dim-tag">DIMENSION IV — RESOURCE PRODUCTIVITY</div>
+      <h2>The "Leak Detection" view</h2>
+      <p class="sub">Answers: Where is margin being burned?</p>
+    </div>
+    <div class="dim-grid">
+
+      <!-- 10. Marketing Spend Productivity / ROAS -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">👷</span><h4>Marketing Spend Productivity (ROAS)</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Which channel earns its budget back?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Blended ROAS</div><div class="val">4.2x</div><div class="chg up">▲ 0.4x</div></div>
+            <div class="dkpi"><div class="lab">Best Channel</div><div class="val">5.1x</div><div class="chg flat">Amazon Ads</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="40" y="14" width="30" height="48" rx="3" fill="#1BAF7A"/>
+              <rect x="100" y="30" width="30" height="32" rx="3" fill="#2A78D6"/>
+              <rect x="160" y="24" width="30" height="38" rx="3" fill="#EDA100"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="55" y="72">Amazon</text><text x="115" y="72">Social</text><text x="175" y="72">Retail Media</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. COGS & Ingredient/Packaging Cost Drift -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🧱</span><h4>COGS &amp; Ingredient/Packaging Cost Drift</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Is input cost creep eating margin?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">COGS % of Rev</div><div class="val">42%</div><div class="chg down">▲ 3pt YoY</div></div>
+            <div class="dkpi"><div class="lab">Packaging/Unit</div><div class="val">$0.87</div><div class="chg down">▲ 9% YoY</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="20" y1="6" x2="20" y2="62" stroke="#e1e0d9"/>
+              <line x1="20" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <polyline fill="none" stroke="#c0392b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                points="26,50 60,46 94,40 128,34 162,26 196,20 230,14"/>
+              <circle cx="230" cy="14" r="3.5" fill="#c0392b"/>
+              <g font-size="7.5" fill="#898781" text-anchor="middle">
+                <text x="26" y="72">-12mo</text><text x="128" y="72">-6mo</text><text x="230" y="72">Now</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 12. Co-Packer/3PL Performance -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🤝</span><h4>Co-Packer / 3PL Performance</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Can we trust our fulfillment partner?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">On-Time Fill</div><div class="val">96.2%</div><div class="chg up">▲ 1.1pt</div></div>
+            <div class="dkpi"><div class="lab">Cost / Unit</div><div class="val">$1.14</div><div class="chg flat">▼ 2%</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <line x1="26" y1="6" x2="26" y2="62" stroke="#e1e0d9"/>
+              <line x1="26" y1="62" x2="250" y2="62" stroke="#c3c2b7"/>
+              <rect x="34" y="10" width="30" height="52" rx="3" fill="#1BAF7A"/>
+              <rect x="90" y="12" width="30" height="50" rx="3" fill="#2A78D6"/>
+              <rect x="146" y="52" width="30" height="10" rx="3" fill="#c0392b"/>
+              <g font-size="8" fill="#52514e" text-anchor="middle">
+                <text x="49" y="72">Fill</text><text x="105" y="72">On-time</text><text x="161" y="72">Defect</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <!-- 13. Inventory & Warehouse Utilization -->
+      <div class="dboard">
+        <div class="dboard-top"><span class="ic">🚜</span><h4>Inventory &amp; Warehouse Utilization</h4></div>
+        <div class="dboard-body">
+          <div class="answers">Where is stock quietly rotting?</div>
+          <div class="dkpis">
+            <div class="dkpi"><div class="lab">Inventory Turns</div><div class="val">6.4x</div><div class="chg up">▲ 0.5x</div></div>
+            <div class="dkpi"><div class="lab">Aging Stock (90d+)</div><div class="val">$340K</div><div class="chg down">8% of stock</div></div>
+          </div>
+          <div class="dchart">
+            <svg viewBox="0 0 260 80" width="100%" height="72">
+              <circle cx="40" cy="36" r="26" fill="none" stroke="#e6e8ec" stroke-width="10"/>
+              <circle cx="40" cy="36" r="26" fill="none" stroke="#2A78D6" stroke-width="10" stroke-dasharray="134 163" stroke-linecap="round" transform="rotate(-90 40 36)"/>
+              <text x="40" y="41" font-size="13" font-weight="800" fill="#1F3A5F" text-anchor="middle">82%</text>
+              <g font-size="9" fill="#52514e">
+                <text x="86" y="20">Warehouse util. 82%</text>
+                <text x="86" y="38">Stockout rate 3.1%</text>
+                <text x="86" y="56">Aging stock 8%</text>
+              </g>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="cta-final">
+  <div class="wrap">
+    <h2>See this built for your business, not a sample brand.</h2>
+    <p>We'll build a sample dashboard using your real numbers where they're public (estimates where they're not) and walk you through it live. No obligation.</p>
+    <a href="/audit" class="btn btn-accent" style="font-size:16px;padding:15px 30px">Get your free data audit →</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
+      <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
+    </div>
+    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+  </div>
+</footer>
+
+</body>
+</html>
