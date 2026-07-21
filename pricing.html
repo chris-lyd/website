@@ -263,13 +263,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/mobile-nav.css">
+<script src="/assets/mobile-nav.js" defer></script>
 </head>
 <body>
 
-<nav>
+<nav data-mobile-nav>
   <div class="wrap nav-in">
     <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-links">
       <a href="/#what">How it works</a>
       <a href="/dashboards">Dashboards</a>
       <a href="/#proof">Case Studies</a>
@@ -278,6 +280,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <a href="/about">About Us</a>
       <a href="/audit" class="btn btn-accent">Free data audit</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="sr-only">Open navigation</span></button>
   </div>
 </nav>
 
@@ -310,7 +313,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <li>Version-controlled pipeline</li>
           <li>Email support &amp; monthly check-ins</li>
         </ul>
-        <p class="tier-note" style="font-size:12.5px;color:var(--muted);margin:0;padding-top:12px;border-top:1px solid var(--line)">Additional data sources $500/mo · additional workflows $300/mo.</p>
+        <p class="tier-note" style="font-size:12.5px;color:var(--muted);margin:0;padding-top:12px;border-top:1px solid var(--line)">Foundation upgrade: $5K expansion fee, bringing total setup paid to $10K. Additional data sources $500/mo · additional workflows $300/mo.</p>
         <a href="/audit" class="btn btn-ghost-d">Start here</a>
       </div>
 
@@ -323,7 +326,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <p class="desc">For operators ready to scale data and automation across the business.</p>
         <ul>
           <li>Everything in Foundation</li>
-          <li>Up to 8 sources, multiple dashboards</li>
+          <li>Up to 8 data sources</li>
+          <li>Up to 3 operational dashboards, refreshed daily</li>
           <li>4 automated workflows total</li>
           <li>Priority support</li>
           <li>Quarterly business reviews</li>
@@ -339,12 +343,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div class="mo">Custom scope &amp; pricing</div>
         <p class="desc">For operators whose needs don't fit a box — multi-entity groups, high source counts, or unusual workflows.</p>
         <ul>
-          <li>Everything in Operator, scaled to you</li>
-          <li>Unlimited data sources &amp; dashboards</li>
-          <li>Unlimited automated workflows</li>
+          <li>Everything in Operator, expanded through an agreed delivery roadmap</li>
+          <li>A scoped portfolio of data sources &amp; dashboards</li>
+          <li>A scoped set of automated workflows</li>
           <li>Multi-entity / multi-brand consolidation</li>
           <li>A dedicated data partner</li>
-          <li>Custom support &amp; response SLAs</li>
+          <li>Agreed operating capacity, priorities &amp; response SLAs</li>
         </ul>
         <a href="/audit" class="btn btn-accent">Talk to us</a>
       </div>
@@ -375,7 +379,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="faq-item">
         <h4>Can I upgrade tiers later?</h4>
-        <p>Yes — most clients start at Foundation and move to Operator once the first dashboard proves the model and they're ready to automate more workflows. Upgrades are prorated.</p>
+        <p>Yes. A Foundation client upgrading to Operator pays a $5,000 expansion fee, so total implementation fees paid equal the published $10,000 Operator setup price. Monthly service then moves from $1,500 to $2,500. The expansion raises included scope from 4 to 8 sources, 1 to 3 dashboards, and 1 to 4 workflows. Non-standard expansion is scoped as Tailored.</p>
       </div>
 
       <div class="faq-item">
@@ -385,7 +389,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="faq-item">
         <h4>When do I need the Tailored tier?</h4>
-        <p>If you run multiple entities or brands, need more than 8 data sources, want unlimited automations, or have a workflow that doesn't map to Foundation or Operator. We scope it on the free audit call — you'll get a fixed monthly number before you commit, same as the other tiers.</p>
+        <p>If you run multiple entities or brands, need more than 8 data sources, more than 3 dashboards, more than 4 workflows, or have an unusual workflow that does not map to Foundation or Operator. We agree on the roadmap, operating capacity, priorities, and a fixed monthly number before you commit.</p>
       </div>
 
       <div class="faq-item">
@@ -429,7 +433,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
     <div class="upgrade-box">
       <h3>Month 3+: Upgrade to Operator</h3>
-      <p>Move to the Operator tier ($10K + $2.5K/mo). Add 3 more data sources, 3 more automations, multiple dashboards. The delta in cost is $1K/mo, but the time savings typically reach 12–15 hours/week.</p>
+      <p>Pay a $5K expansion fee, bringing total setup paid to $10K, and move monthly service from $1.5K to $2.5K. Add 4 data sources, up to 2 additional dashboards, and 3 automated workflows.</p>
     </div>
 
     <div class="upgrade-box">
@@ -454,7 +458,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
       <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
     </div>
-    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+    <div style="text-align:right">
+      <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+      <div style="margin-top:7px"><a href="/privacy" style="text-decoration:underline">Privacy</a> · <a href="/terms" style="text-decoration:underline">Terms</a></div>
+    </div>
   </div>
 </footer>
 

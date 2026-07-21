@@ -62,6 +62,10 @@
   @media(max-width:860px){.bio-grid{grid-template-columns:1fr}}
   .bio{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:.15s}
   .bio:hover{border-color:var(--blue);box-shadow:0 12px 32px rgba(31,58,95,.08)}
+  .bio-photo{aspect-ratio:16/9;overflow:hidden;background:var(--plane);border-bottom:1px solid var(--line)}
+  .bio-photo img{display:block;width:100%;height:100%;object-fit:cover}
+  .bio-photo.ryan img{object-position:50% 30%}
+  .bio-photo.chris img{object-position:50% 36%}
   .bio-head{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-700) 100%);color:#fff;padding:24px 28px}
   .bio-head h3{font-size:22px;font-weight:800;letter-spacing:-.01em}
   .bio-head .role{font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--amber);margin-top:4px}
@@ -239,13 +243,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/mobile-nav.css">
+<script src="/assets/mobile-nav.js" defer></script>
 </head>
 <body>
 
-<nav>
+<nav data-mobile-nav>
   <div class="wrap nav-in">
     <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-links">
       <a href="/#what">How it works</a>
       <a href="/dashboards">Dashboards</a>
       <a href="/#proof">Case Studies</a>
@@ -254,6 +260,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <a href="/about" style="color:var(--navy)">About Us</a>
       <a href="/audit" class="btn btn-accent">Free data audit</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="sr-only">Open navigation</span></button>
   </div>
 </nav>
 
@@ -285,6 +292,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
     <div class="bio-grid">
       <div class="bio">
+        <div class="bio-photo ryan">
+          <img src="/assets/ryan-headshot.webp" alt="Ryan, Co-Founder and Chief Business Officer at LightYear Data" width="1400" height="1748" loading="lazy" decoding="async">
+        </div>
         <div class="bio-head">
           <h3>Ryan</h3>
           <div class="role">Co-Founder &amp; Chief Business Officer</div>
@@ -296,6 +306,9 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       </div>
 
       <div class="bio">
+        <div class="bio-photo chris">
+          <img src="/assets/chris-headshot.webp" alt="Chris, Co-Founder and Chief Data Officer at LightYear Data" width="1400" height="933" loading="lazy" decoding="async">
+        </div>
         <div class="bio-head">
           <h3>Chris</h3>
           <div class="role">Co-Founder &amp; Chief Data Officer</div>
@@ -336,7 +349,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
       <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
     </div>
-    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+    <div style="text-align:right">
+      <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+      <div style="margin-top:7px"><a href="/privacy" style="text-decoration:underline">Privacy</a> · <a href="/terms" style="text-decoration:underline">Terms</a></div>
+    </div>
   </div>
 </footer>
 

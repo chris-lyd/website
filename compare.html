@@ -249,13 +249,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/mobile-nav.css">
+<script src="/assets/mobile-nav.js" defer></script>
 </head>
 <body>
 
-<nav>
+<nav data-mobile-nav>
   <div class="wrap nav-in">
     <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-links">
       <a href="/#what">How it works</a>
       <a href="/dashboards">Dashboards</a>
       <a href="/#proof">Case Studies</a>
@@ -264,6 +266,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <a href="/about">About Us</a>
       <a href="/audit" class="btn btn-accent">Free data audit</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="sr-only">Open navigation</span></button>
   </div>
 </nav>
 
@@ -292,8 +295,8 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="arch">
         <div class="tn">Managed analytics / "fractional data team"</div>
         <div class="band">$3K–$12K/mo · often $50K–$150K/yr all-in</div>
-        <p>The closest thing to what we do — a growing field of firms offering an outsourced data team. Nearly all of them target funded tech, SaaS, and e-commerce companies, and most price per data source or per project, so costs creep as you grow.</p>
-        <p class="fit"><b>Pick this if:</b> you're a funded software company that speaks their language. If you run trucks, policies, patients, or pallets — they weren't built for you.</p>
+        <p>The closest category to what we do. Firms vary widely: some specialize by industry, some sell flexible analytics capacity, and others price by tier, source, or project.</p>
+        <p class="fit"><b>Pick this if:</b> you need a broader bench, a specialist platform for your industry, or flexible analytics capacity. Compare ownership, operating automation, support, and how the fee changes as your scope grows.</p>
       </div>
       <div class="arch">
         <div class="tn">Freelancer / generalist consultant</div>
@@ -336,12 +339,12 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           <td><span class="yes">✓</span></td>
         </tr>
         <tr>
-          <td>Flat monthly fee that doesn't creep per source</td>
+          <td>Published tier allowances and overage rates</td>
           <td class="us"><span class="yes">✓</span></td>
-          <td><span class="no">✗ Usually per-source</span></td>
-          <td><span class="no">✗</span></td>
-          <td><span class="no">✗ Hourly</span></td>
-          <td>—</td>
+          <td><span class="part">Some</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="yes">Included</span></td>
         </tr>
         <tr>
           <td>You own the warehouse &amp; code, no lock-in</td>
@@ -362,24 +365,24 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <tr>
           <td>Automation of operations, not just dashboards</td>
           <td class="us"><span class="yes">✓ First-class</span></td>
-          <td><span class="part">Add-on</span></td>
-          <td><span class="part">Enterprise scope</span></td>
-          <td><span class="no">✗</span></td>
-          <td><span class="no">✗</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="part">Available</span></td>
+          <td><span class="part">Varies</span></td>
+          <td><span class="part">Platform-specific</span></td>
         </tr>
         <tr>
           <td>Built for non-tech operator businesses</td>
           <td class="us"><span class="yes">✓</span></td>
-          <td><span class="no">✗ SaaS/e-comm focus</span></td>
-          <td><span class="no">✗ Enterprise focus</span></td>
+          <td><span class="part">Some</span></td>
+          <td><span class="part">Varies</span></td>
           <td><span class="part">Varies</span></td>
           <td><span class="yes">✓ Your vertical</span></td>
         </tr>
         <tr>
           <td>Priced for a $2M–$50M business</td>
           <td class="us"><span class="yes">✓ $1.5K–$2.5K/mo</span></td>
-          <td><span class="part">Entry tiers only</span></td>
-          <td><span class="no">✗</span></td>
+          <td><span class="part">Some</span></td>
+          <td><span class="part">Often upmarket</span></td>
           <td><span class="yes">✓</span></td>
           <td><span class="yes">✓</span></td>
         </tr>
@@ -407,23 +410,23 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
     <div class="peer-grid">
       <div class="peer">
         <h4>HelpWithMetrics</h4>
-        <p>Flat published tiers ($3K/$5K/$7K per month) and a disciplined, governed approach to metrics — genuinely well done. Focused on tech and SaaS companies; lighter on operational automation.</p>
-        <p class="pick"><b>Choose them if:</b> you're a SaaS company that lives in MRR and churn. <b>Choose us if:</b> you run operations — and want automation, not just reporting, at roughly half the monthly price.</p>
+        <p>Published tiers at $3K, $5K, and $7K per month, with an AI analyst built on a governed semantic layer. Its site also emphasizes client ownership of source data, warehouse, BI accounts, semantic models, and dashboards. <a href="https://helpwithmetrics.com/" target="_blank" rel="noopener">Official site ↗</a></p>
+        <p class="pick"><b>Choose them if:</b> a governed semantic layer and ongoing analytics request capacity are central to your needs. <b>Choose us if:</b> you want a lower published entry point tied to operator dashboards and recurring operational automations.</p>
       </div>
       <div class="peer">
         <h4>Datateer</h4>
-        <p>A strong managed-analytics platform that has recently focused entirely on the construction industry. Pricing runs per data source ($10K setup + ~$1.5K/mo per source), which scales up fast as you add systems.</p>
-        <p class="pick"><b>Choose them if:</b> you're a construction firm wanting a construction-specific platform. <b>Choose us if:</b> you're in any other operator vertical, or want a flat fee that doesn't grow per source.</p>
+        <p>A construction-focused reporting and analytics service with a prebuilt dashboard suite. Its published pricing starts at $10K per year per data source and states a typical $10K–$50K annual investment, depending on source count. <a href="https://datateer.com/" target="_blank" rel="noopener">Official site ↗</a></p>
+        <p class="pick"><b>Choose them if:</b> you're a construction company that values construction ERP integrations and a prebuilt reporting suite. <b>Choose us if:</b> you're in another operator vertical or prefer bundled source allowances with published overage rates and operational automation.</p>
       </div>
       <div class="peer">
         <h4>Mammoth Growth</h4>
-        <p>A large, capable growth-analytics consultancy oriented around marketing and product analytics for funded companies. Project-scoped engagements at consultancy rates.</p>
-        <p class="pick"><b>Choose them if:</b> you need growth/marketing analytics at scale. <b>Choose us if:</b> your questions are about operations, cash, and labor — not funnels.</p>
+        <p>An AI-native data and analytics consultancy serving C-suite, finance, growth, revenue, and data teams. Its work spans complex data infrastructure, governed reporting, marketing, forecasting, and revenue operations. <a href="https://www.mammothgrowth.com/" target="_blank" rel="noopener">Official site ↗</a></p>
+        <p class="pick"><b>Choose them if:</b> you need a larger consultancy for complex, cross-functional analytics work. <b>Choose us if:</b> you're an operator business looking for a published entry price, direct founder delivery, and a client-owned operating system.</p>
       </div>
       <div class="peer">
-        <h4>Full Send &amp; other fractional data teams</h4>
-        <p>A growing field of firms (Full Send, Adaptive, Blue Margin, LeapFrogBI, and more) renting you data-team hours. Most target mid-market and tech; most price custom; stack ownership varies by contract.</p>
-        <p class="pick"><b>Choose them if:</b> you want flexible senior data hours on tap. <b>Choose us if:</b> you want a fixed price, a system you own, and a firm that speaks operator — not startup.</p>
+        <h4>Full Send</h4>
+        <p>A combined accounting, tax, fractional CFO, data analytics, automation, and AI consultancy. Its site serves technology, consumer-goods, and service businesses, typically from $1M–$20M in revenue. <a href="https://www.thefullsend.com/services/fractional-data-team" target="_blank" rel="noopener">Official site ↗</a></p>
+        <p class="pick"><b>Choose them if:</b> you want one provider across accounting, tax, finance, data, and automation. <b>Choose us if:</b> you want a focused outsourced data department with published scoped tiers and a stack built in your name.</p>
       </div>
     </div>
 
@@ -438,7 +441,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 <section class="cta-final">
   <div class="wrap">
     <h2>The fastest way to compare us: see your own data.</h2>
-    <p>We'll build a sample dashboard from what's publicly knowable about your business, walk you through it live, and you'll know in 20 minutes if this is worth doing.</p>
+    <p>We'll build a tailored sample using information you choose to share, reliable public information where available, and clearly labeled illustrative data where actual figures are unavailable.</p>
     <a href="/audit" class="btn btn-accent" style="font-size:16px;padding:15px 30px">Get your free data audit →</a>
   </div>
 </section>
@@ -449,7 +452,10 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
       <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
     </div>
-    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+    <div style="text-align:right">
+      <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+      <div style="margin-top:7px"><a href="/privacy" style="text-decoration:underline">Privacy</a> · <a href="/terms" style="text-decoration:underline">Terms</a></div>
+    </div>
   </div>
 </footer>
 

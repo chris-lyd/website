@@ -13,6 +13,8 @@
 <meta property="og:description" content="See your business on a dashboard — before you pay a cent. A 20-minute walkthrough, no obligation.">
 <meta property="og:url" content="https://lightyeardata.com/audit">
 <meta property="og:image" content="https://lightyeardata.com/assets/lyd-mark.png">
+<!-- FormSubmit requires a one-time confirmation from this recipient after the first submission. -->
+<meta name="audit-form-endpoint" content="https://formsubmit.co/ajax/ryan@lightyeardata.com">
 <style>
   :root{
     --navy:#1F3A5F; --navy-700:#152a45; --ink:#0b0b0b; --muted:#52514e;
@@ -73,6 +75,10 @@
   .form-group input::placeholder,
   .form-group textarea::placeholder{color:#999}
   .form-btn{width:100%;padding:15px 22px;font-size:16px;margin-top:8px}
+  .form-privacy{font-size:12.5px!important;line-height:1.5;color:var(--muted)!important;margin:12px 0 0!important;text-align:center}
+  .form-privacy a{text-decoration:underline;color:var(--navy);font-weight:600}
+  .form-error{display:none;background:#fff5f3;border:1px solid #e2a79e;border-radius:9px;color:#7c261d;font-size:14px;line-height:1.5;margin-top:16px;padding:13px 14px}
+  .form-error.show{display:block}
 
   /* RIGHT COLUMN */
   .audit-steps{background:var(--plane);border-radius:13px;padding:32px;border:1px solid var(--line)}
@@ -273,13 +279,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
   .benefit-card:hover,.faq-item:hover,.price:hover,.btn:active{transform:none}
 }
 </style>
+<link rel="stylesheet" href="/assets/mobile-nav.css">
+<script src="/assets/mobile-nav.js" defer></script>
 </head>
 <body>
 
-<nav>
+<nav data-mobile-nav>
   <div class="wrap nav-in">
     <a href="/" class="logo"><img src="/assets/lightyear-logo.png" alt="LightYear Data"></a>
-    <div class="nav-links">
+    <div class="nav-links" id="primary-links">
       <a href="/#what">How it works</a>
       <a href="/dashboards">Dashboards</a>
       <a href="/#proof">Case Studies</a>
@@ -288,15 +296,16 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <a href="/about">About Us</a>
       <a href="/audit" style="color:var(--navy);font-weight:700">Free data audit</a>
     </div>
+    <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="primary-links"><span class="nav-toggle-icon" aria-hidden="true"></span><span class="sr-only">Open navigation</span></button>
   </div>
 </nav>
 
 <!-- HERO -->
 <header class="hero">
   <div class="wrap">
-    <div class="eyebrow" style="color:var(--accent)">No cost. No obligation. Real numbers.</div>
+    <div class="eyebrow" style="color:var(--accent)">No cost. No obligation. Built around your business.</div>
     <h1>See your business on a dashboard — before you pay a cent.</h1>
-    <p class="sub">Tell us your industry and the systems you run on. We'll build a sample dashboard using your real numbers where they're public (estimates where they're not) and walk you through exactly what daily-refreshed operational dashboards would look like for your business.</p>
+    <p class="sub">Tell us your industry and the systems you run on. We'll build a tailored sample using information you choose to share, reliable public information where available, and clearly labeled illustrative data where actual figures are unavailable.</p>
   </div>
 </header>
 
@@ -309,7 +318,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <h3>Let's get started</h3>
         <p>Takes about 2 minutes. We'll follow up within 24 hours.</p>
 
-        <form id="auditForm">
+        <form id="auditForm" method="post" action="https://formsubmit.co/ryan@lightyeardata.com">
+          <div aria-hidden="true" style="position:absolute;left:-10000px;height:1px;overflow:hidden">
+            <label for="company-website">Leave this field blank</label>
+            <input type="text" id="company-website" name="_honey" tabindex="-1" autocomplete="off">
+          </div>
           <div class="form-group">
             <label for="name">Your name *</label>
             <input type="text" id="name" name="name" required placeholder="John Smith">
@@ -345,14 +358,15 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
           </div>
 
           <button type="submit" class="btn btn-accent form-btn">Get your free data audit →</button>
+          <p class="form-privacy">We'll use this information only to evaluate your request and contact you about the audit. See our <a href="/privacy">Privacy Policy</a>.</p>
+          <div id="formError" class="form-error" role="alert" aria-live="assertive" tabindex="-1"></div>
         </form>
 
         <!-- SUCCESS MESSAGE (HIDDEN) -->
-        <div id="successMessage" class="form-success">
+        <div id="successMessage" class="form-success" role="status" aria-live="polite" tabindex="-1">
           <div class="checkmark">✓</div>
-          <h3>Thanks! We got it.</h3>
-          <p>We'll build a sample dashboard for your business and reach out within 24 hours to schedule a 20-minute walk-through call.</p>
-          <p style="font-size:14px;color:#888">In the meantime, check your email for confirmation.</p>
+          <h3>Thanks. We received your request.</h3>
+          <p>We'll review it and reply within one business day. If you don't hear from us, email ryan@lightyeardata.com.</p>
         </div>
 
         <!-- REASSURANCE -->
@@ -376,7 +390,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
         <div class="step">
           <div class="step-num">2</div>
           <h4>We build a sample dashboard</h4>
-          <p>Using your real numbers where we can find them publicly, or estimates where we can't, we mock up what your operational dashboard could look like. It's the same kind we've built for a multi-channel CPG brand.</p>
+          <p>We use information you choose to share, reliable public information where available, and clearly labeled illustrative data where actual figures are unavailable. It's the same kind of operational view we've built for a multi-channel CPG brand.</p>
         </div>
 
         <div class="step">
@@ -433,7 +447,7 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 
       <div class="faq-item">
         <h4>Do I need to share my data?</h4>
-        <p>For the mockup, we use publicly available data (like retail numbers or funding info) plus estimates where needed. We don't need access to your systems yet.</p>
+        <p>No system access is required for the initial mockup. We use information you choose to share, reliable public information where available, and clearly labeled illustrative data where actual figures are unavailable.</p>
       </div>
 
       <div class="faq-item">
@@ -474,48 +488,68 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
       <div class="logo">LightYear<span style="color:var(--accent)">Data</span></div>
       <div style="margin-top:6px">Your data, your stack, your decisions. · chris@lightyeardata.com</div>
     </div>
-    <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+    <div style="text-align:right">
+      <div>© 2026 LightYear Data · The outsourced data department for operators.</div>
+      <div style="margin-top:7px"><a href="/privacy" style="text-decoration:underline">Privacy</a> · <a href="/terms" style="text-decoration:underline">Terms</a></div>
+    </div>
   </div>
 </footer>
 
 <script>
-  // Form backend: set FORM_ENDPOINT to a Formspree-style URL (e.g. "https://formspree.io/f/XXXXXXXX")
-  // to receive submissions by email. Until it's set, submissions only log to the browser console.
-  const FORM_ENDPOINT = "";
+  const FORM_ENDPOINT = document.querySelector('meta[name="audit-form-endpoint"]')?.content.trim() || '';
 
   document.getElementById('auditForm').addEventListener('submit', async function(e) {
     e.preventDefault();
 
+    const params = new URLSearchParams(window.location.search);
     const formData = {
       name: document.getElementById('name').value,
       email: document.getElementById('email').value,
       company: document.getElementById('company').value,
       industry: document.getElementById('industry').value,
       painPoint: document.getElementById('pain-point').value,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
+      pageUrl: window.location.href,
+      source: params.get('utm_source') || '',
+      medium: params.get('utm_medium') || '',
+      campaign: params.get('utm_campaign') || '',
+      _honey: document.getElementById('company-website').value,
+      _subject: 'New LightYear Data audit request',
+      _template: 'table'
     };
 
     const btn = this.querySelector('button[type="submit"]');
+    const errorBox = document.getElementById('formError');
+    const originalLabel = btn.textContent;
+    errorBox.classList.remove('show');
+    errorBox.textContent = '';
     btn.disabled = true;
     btn.textContent = 'Sending…';
 
     try {
-      if (FORM_ENDPOINT) {
-        const res = await fetch(FORM_ENDPOINT, {
-          method: 'POST',
-          headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
-          body: JSON.stringify(formData)
-        });
-        if (!res.ok) throw new Error('Submission failed');
-      } else {
-        console.log('Audit Request (no backend configured):', formData);
+      if (!FORM_ENDPOINT) throw new Error('Form endpoint is not configured');
+
+      const res = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+        body: JSON.stringify(formData)
+      });
+      const result = await res.json().catch(() => ({}));
+      if (!res.ok || result.success === false || result.success === 'false') {
+        throw new Error(`Submission failed with status ${res.status}`);
       }
-      document.querySelector('.form-box').style.display = 'none';
-      document.getElementById('successMessage').classList.add('show');
+
+      this.style.display = 'none';
+      document.querySelector('.reassurance').style.display = 'none';
+      const success = document.getElementById('successMessage');
+      success.classList.add('show');
+      success.focus();
     } catch (err) {
       btn.disabled = false;
-      btn.textContent = 'Get your free data audit →';
-      alert("Something went wrong sending the form. Please email chris@lightyeardata.com and we'll take it from there.");
+      btn.textContent = originalLabel;
+      errorBox.innerHTML = 'We could not send your request. Please email <a href="mailto:ryan@lightyeardata.com">ryan@lightyeardata.com</a> and we\'ll take it from there.';
+      errorBox.classList.add('show');
+      errorBox.focus?.();
     }
   });
 </script>
